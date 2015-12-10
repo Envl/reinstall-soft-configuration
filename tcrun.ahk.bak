@@ -1,0 +1,218 @@
+#NoTrayIcon
+#SingleInstance force
+DetectHiddenWindows,On
+
+
+;~ DetectHiddenText,On
+;#t::run F:\TotalCommander\TOTALCMD64.EXE /O
+;-------------------TC--------------------------
+#e::
+;Win + E
+IfWinNotExist, ahk_class TTOTAL_CMD
+;不存在就运行TC
+    Run,F:\TotalCommander\TOTALCMD64.EXE /O
+;~ 	#t::run F:\TotalCommander\TOTALCMD64.EXE /O
+;存在就激活
+Else
+{
+    IfWinActive, ahk_class TTOTAL_CMD
+;
+       WinMinimize, 
+;
+    Else
+       WinActivate,
+;
+}
+return
+;------------------虚拟桌面 - Ahk-------------------------
+SetBatchLines, -1 ; maximize script speed!
+SetWinDelay, -1
+OnExit, CleanUp ; clean up in case of error (otherwise some windows will get lost)
+;Autohotkey的脚本，实现虚拟桌面的功能，快捷键Alt+1，2，3，4
+numDesktops := 4 ; maximum number of desktops
+curDesktop := 1 ; index number of current desktop
+WinGet, windows1, List ; get list of all currently visible windows
+; ***** hotkeys *****
+#!1::SwitchToDesktop(1)
+#!2::SwitchToDesktop(2)
+#!3::SwitchToDesktop(3)
+#!4::SwitchToDesktop(4)
+#+!1::SendActiveToDesktop(1)
+#+!2::SendActiveToDesktop(2)
+#+!3::SendActiveToDesktop(3)
+#+!4::SendActiveToDesktop(4)
+;!0::ExitApp
+; ***** functions *****
+; switch to the desktop with the given index number
+SwitchToDesktop(newDesktop)
+{
+global
+if (curDesktop <> newDesktop)
+{
+GetCurrentWindows(curDesktop)
+;WinGet, windows%curDesktop%, List,,, Program Manager ; get list of all visible windows
+ShowHideWindows(curDesktop, false)
+ShowHideWindows(newDesktop, true)
+curDesktop := newDesktop
+Send, {ALT DOWN}{TAB}{ALT UP} ; activate the right window
+}
+return
+}
+; sends the given window from the current desktop to the given desktop
+SendToDesktop(windowID, newDesktop)
+{
+global
+RemoveWindowID(curDesktop, windowID)
+; add window to destination desktop
+windows%newDesktop% += 1
+i := windows%newDesktop%
+windows%newDesktop%%i% := windowID
+WinHide, ahk_id %windowID%
+Send, {ALT DOWN}{TAB}{ALT UP} ; activate the right window
+}
+; sends the currently active window to the given desktop
+SendActiveToDesktop(newDesktop)
+{
+WinGet, id, ID, A
+SendToDesktop(id, newDesktop)
+}
+; removes the given window id from the desktop
+RemoveWindowID(desktopIdx, ID)
+{
+global
+Loop, % windows%desktopIdx%
+{
+if (windows%desktopIdx%%A_Index% = ID)
+{
+RemoveWindowID_byIndex(desktopIdx, A_Index)
+Break
+}
+}
+}
+; this removes the window id at index from desktop number
+RemoveWindowID_byIndex(desktopIdx, ID_idx)
+{
+global
+Loop, % windows%desktopIdx% - ID_idx
+{
+idx1 := % A_Index + ID_idx - 1
+idx2 := % A_Index + ID_idx
+windows%desktopIdx%%idx1% := windows%desktopIdx%%idx2%
+}
+windows%desktopIdx% -= 1
+}
+; this builds a list of all currently visible windows in stores it in desktop
+GetCurrentWindows(index)
+{
+global
+WinGet, windows%index%, List,,, Program Manager ; get list of all visible windows
+; now remove task bar “window” (is there a simpler way?)
+Loop, % windows%index%
+{
+id := % windows%index%%A_Index%
+WinGetClass, windowClass, ahk_id %id%
+if windowClass = Shell_TrayWnd ; remove task bar window id
+{
+RemoveWindowID_byIndex(index, A_Index)
+Break
+}
+}
+}
+; if show=true then shows windows of desktop %index%, otherwise hides them
+ShowHideWindows(index, show)
+{
+global
+Loop, % windows%index%
+{
+id := % windows%index%%A_Index%
+if show
+WinShow, ahk_id %id%
+else
+WinHide, ahk_id %id%
+}
+}
+; show all windows from all desktops on exit
+CleanUp:
+Loop, %numDesktops%
+ShowHideWindows(A_Index, true)
+ExitApp
+;-------------------Everthing-------------------
+#f::
+
+;Win + F
+IfWinNotExist, ahk_class EVERYTHING
+;
+    Run,"F:\Everything\Everything.exe"
+;~ 	#t::run F:\TotalCommander\TOTALCMD64.EXE /O
+
+;
+Else
+{
+    IfWinActive, ahk_class EVERYTHING
+;
+       WinClose,
+;
+    Else
+       WinActivate,
+;
+}
+return
+;----------------------一键谷歌-------------------
+~MButton & g::
+  IfWinActive ahk_class TTOTAL_CMD ;TC 存在就缩小防止复制文件
+    WinMinimize
+  current_clipboard = %Clipboard% ; 把目前的剪貼簿內容存起來供後面還原
+  Clipboard = ; 先把剪貼簿清空
+  Send ^c
+  ; 把選取字串用〔Ctrl+C〕存入剪貼簿
+  WinActivate
+  ClipWait, 1 ; 等待1秒讓剪貼簿執行存入動作
+  if Clipboard = 
+  {
+    Run http://www.google.com/search?q=%current_clipboard%
+  }else
+  {
+  ; 下行使用Google執行搜尋動作，要搜尋的字串就是剪貼簿內容
+    Run http://www.google.com/search?q=%Clipboard%
+  }
+  Clipboard = %current_clipboard% ; 還原先前的剪貼簿內容
+  return
+;----------------一键百度---------------------------
+~MButton & b::
+  IfWinActive ahk_class TTOTAL_CMD
+    WinMinimize
+  current_clipboard = %Clipboard% ; 把目前的剪貼簿內容存起來供後面還原
+  Clipboard = ; 先把剪貼簿清空
+  Send ^c
+  WinActivate
+  ; 把選取字串用〔Ctrl+C〕存入剪貼簿
+  ClipWait, 1 ; 等待1秒讓剪貼簿執行存入動作
+  ; 下行使用Google執行搜尋動作，要搜尋的字串就是剪貼簿內容
+  if Clipboard = 
+  {
+    Run http://www.baidu.com/s?wd=%current_clipboard%
+  }
+  else
+  {
+    Run http://www.baidu.com/s?wd=%Clipboard%
+  }
+  Clipboard = %current_clipboard% ; 還原先前的剪貼簿內容
+  return
+return
+;------------------------计算坐标-----------------------
+
+/* CoordMode, Mouse, Screen
+ * 
+ * ~RAlt::
+ *     MouseGetPos, begin_x, begin_y
+ *     while GetKeyState("Alt")
+ *     {
+ *         MouseGetPos, x, y
+ *         ToolTip, % begin_x ", " begin_y "`n" Abs(begin_x-x) " x " Abs(begin_y-y)
+ *         Sleep, 10
+ *     }
+ *      ;ToolTip
+ * return
+ * ~MButton::
+ *   ToolTip
+ */

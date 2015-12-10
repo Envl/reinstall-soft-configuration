@@ -1,0 +1,5 @@
+[plugininstall]
+description=UnInstaller. Enhanced FS-plugin for uninstalling different software
+type=wfx
+file=UnInstTC.wfx
+defaultdir=Uninstall

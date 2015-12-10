@@ -1,0 +1,29 @@
+; LngFile for UnIstaller v1.7.3 FS-Plugin for TC
+;
+; Autor: Joan Montané
+;        
+;
+
+[Language]
+Lng=Catalan
+
+[Warnings]
+1=ATENCIÓ!!! Esteu intentant desinstal·lar un programa ocult!!! Aquesta operació pot ocasionar resultats inesperats!!!
+2=Voleu continuar?
+
+[Config]
+1=Configuració
+2=D'acord
+3=Cancel·a
+4=Mostra
+5=Només estàndard
+6=Només ocults
+7=Ambdós
+
+[Properties]
+1=Propietats:
+2=D'acord
+3=Cancel·la
+4=Paràmetres estàndards
+5=Paràmetres ocults
+

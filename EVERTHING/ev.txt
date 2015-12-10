@@ -1,0 +1,2 @@
+$exec("f:\TotalCommander\TOTALCMD64.EXE"  "/O" "/T" "%1")
+$exec("f:\TotalCommander\TOTALCMD64.EXE"  "/O" "/T" "$parent(%1)")

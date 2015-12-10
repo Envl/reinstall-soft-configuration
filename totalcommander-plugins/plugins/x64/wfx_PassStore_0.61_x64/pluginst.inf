@@ -1,0 +1,5 @@
+[plugininstall]
+description=Password Store v0.61 (x64)
+type=wfx
+file=PassStore.wfx64
+defaultdir=PassStore

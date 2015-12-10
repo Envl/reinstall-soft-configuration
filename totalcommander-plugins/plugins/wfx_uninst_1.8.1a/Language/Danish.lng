@@ -1,0 +1,36 @@
+; LngFile for UnIstaller v1.8 FS-Plugin for TC
+;
+; Autor: petermad
+;        http://madsenworld.dk
+;
+
+[Language]
+Lng=Dansk
+
+[Warnings]
+1=ADVARSEL!!! De er ved at afinstallere et skjult program!!! Dette kan medføre uforudsigelige resultater!!!
+2=Fortsæt?
+
+[Config]
+1=Indstillinger
+2=OK
+3=Annuller
+4=Vis
+5=Kun standard
+6=Kun skjulte
+7=Begge
+8=Standard
+9=Skjulte
+10=Windows HotFix
+
+[Properties]
+1=Egenskaber:
+2=OK
+3=Annuller
+4=Standard parametre
+5=Skjulte parametre
+
+[Modify]
+1=Vælg om du ønsker at "Ændre" eller "Fjerne" dette program:
+2=Ændre
+3=Fjerne

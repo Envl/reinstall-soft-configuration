@@ -1,0 +1,5 @@
+[plugininstall]
+description=procViewer 1.5.1 beta (32bit+64bit)
+type=wfx
+file=procview.wfx
+defaultdir=procView
