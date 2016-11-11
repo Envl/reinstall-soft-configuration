@@ -1,3 +1,7 @@
+系统迁移项目
+=====
+这是一个系统迁移项目，旨在随时更换系统中保留以往配置文件 快速迁移原本的系统设置。
+
 AHK工具箱
 =====
 TCRun
@@ -41,8 +45,28 @@ TotalCommander配置文件路径：%APPDATA%\Roaming\GHISLER\(**c:\Users\zyl\App
 + Datagrip - **DEV**
 + Webstorm - **DEV**
 
+迁移Windows系统指南
+-------
+1. 传输 shadowsocks & configurations
+2. [http://www.google.com/chrome](http://www.google.com/chrome) 下载最新版Chrome (need system proxy)\
+3. msysgit 下载
+4. totalcommander 下载
+5. everything 下载
+6. .ssh 私钥传输 配置
+7. putty 安装 并 导入配置
+8. git clone 本项目 并设置TC
+9. markdownpad2 安装
+10. vim 下载
+11. cygwin 安装
+12. jdk 安装
+13. dev 环境安装(id,dg,we etc.)
+14. 配置环境变量%shortcuts% -> e:\shortcuts\
+15. 下载QQ、sogouInput etc. 
+16. Ditto 安装
+17. wiznote
 
 ---------
-author:zyl
-20:29 2014/4/30
+author:zyl<br/>
+20:29 2014/4/30 <br/>
 update 2014-11-28 14:47:43
+update 2016-11-11 15:59:38
