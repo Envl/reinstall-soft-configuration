@@ -10,7 +10,7 @@ DetectHiddenWindows,On
 ;Win + E
 IfWinNotExist, ahk_class TTOTAL_CMD
 ;不存在就运行TC
-    Run,E:\TotalCommander\TOTALCMD64.EXE /O
+    Run,D:\TotalCommander\TOTALCMD64.EXE /O
 ;~ 	#t::run E:\TotalCommander\TOTALCMD64.EXE /O
 ;存在就激活
 Else
@@ -30,7 +30,7 @@ return
 ;Win + F
 IfWinNotExist, ahk_class EVERYTHING
 ;
-    Run,"E:\Everything\Everything.exe"
+    Run,"D:\Everything\Everything.exe"
 ;~ 	#t::run E:\TotalCommander\TOTALCMD64.EXE /O
 
 ;
