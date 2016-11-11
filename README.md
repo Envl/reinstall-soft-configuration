@@ -47,23 +47,24 @@ TotalCommander配置文件路径：%APPDATA%\Roaming\GHISLER\(**c:\Users\zyl\App
 
 迁移Windows系统指南
 -------
-1. 传输 shadowsocks & configurations
-2. [http://www.google.com/chrome](http://www.google.com/chrome) 下载最新版Chrome (need system proxy)\
-3. msysgit 下载
-4. totalcommander 下载
-5. everything 下载
-6. .ssh 私钥传输 配置
-7. putty 安装 并 导入配置
-8. git clone 本项目 并设置TC
-9. markdownpad2 安装
-10. vim 下载
-11. cygwin 安装
-12. jdk 安装
-13. dev 环境安装(id,dg,we etc.)
-14. 配置环境变量%shortcuts% -> e:\shortcuts\
-15. 下载QQ、sogouInput etc. 
-16. Ditto 安装
-17. wiznote
+1. 彻底更改windows用户名与用户文件夹
+2. 传输 shadowsocks & configurations
+3. [http://www.google.com/chrome](http://www.google.com/chrome) 下载最新版Chrome (need system proxy)\
+4. msysgit 下载
+5. totalcommander 下载
+6. everything 下载
+7. .ssh 私钥传输 配置
+8. putty 安装 并 导入配置
+9. git clone 本项目 并设置TC
+10. markdownpad2 安装
+11. vim 下载
+12. cygwin 安装
+13. jdk 安装
+14. dev 环境安装(id,dg,we etc.)
+15. 配置环境变量%shortcuts% -> e:\shortcuts\
+16. 下载QQ、sogouInput etc. 
+17. Ditto 安装
+18. wiznote
 
 ---------
 author:zyl<br/>
